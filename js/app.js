@@ -21,22 +21,15 @@ function ZooGallery(animal){
 
 ZooGallery.prototype.picViewer = function(){
 
-//    $(".keySearch").text(this.keyword)
-let myAnimal = $('.photo-template').clone();
-    $('main').append(myAnimal); /// what inside the template(div):
-
+//    $(".keySearch").text(this.keyword
 let Options = $('<option></option>').text(this.keyword);
 $('select').append(Options);
 
 
-    // let myAnimal = $(".photo-template").clone();
-    myAnimal.find("h2").text(this.title);
-    myAnimal.find("img").attr("src", this.image_url);
-    myAnimal.find("p").text(this.description);
-    myAnimal.find("span").text(this.keyword);
-    myAnimal.find("b").text(`Horns Number: ${this.horns}`);
-    // myAnimal.removeClass('photo-template');
-    myAnimal.attr('class', this.keyword);
+let Template = $('#myTemplate').html();
+let htmlText = Mustache.render(Template, this);
+$('#second-page').append(htmlText);
+
 
 };
 
@@ -48,28 +41,54 @@ $('select').append(Options);
         dataType: 'json',
 
     };
+    const pageView = (pageNum) => {
 
-    $.ajax('data/page-1.json' , ajaxSettings)
-    .then (data => {
-        data.forEach(myZoo => {
+  
+        $.ajax(`data/page-${pageNum}.json`, ajaxSettings).then(data => {
+      
+        
+          data.forEach(myZoo => {
             let pet = new ZooGallery(myZoo);
             pet.picViewer();
-
-
+          });
         });
+       };
+       pageView(1);
+      
+      
+       // keyword filter
+        $('select').on('change', function(){
+          let selected = this.value;
+          $('#second-page').hide();
+          $(`.${selected}`).show();
+        });
+      
+      
+      
+       const changer = () =>{
+        $('.page1').on('click', function(){
+          $('#second-page').hide('');
+          $('#second-page').show('');
+          // $('#second-page').toggle('.ANM');
+          $('#second-page').html('');
+          pageView(1);
+        });
+      
+        $('.page2').on('click', function(){
+          $('#second-page').hide("");
+          $('#second-page').show("");
+          $('#second-page').html("");
+          pageView(2);
+        });
+       }
+       changer();
+      
+      });
+      
+      
+      
+      
 
-    }
-        ); 
+///////
 
-
-// $(()=> ZooGallery.readJson());
-
-
-// $(document).ready(function () {
-    $('select').on('change', function() {
-      let selected = this.value;
-      $('section').hide();
-      $(`.${selected}`).show();
-    });
-  });
-  
+    

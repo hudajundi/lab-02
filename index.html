@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layouts.css">
+    <link rel="stylesheet" href="css/modules.css">
     
 </head>
 <body>
@@ -25,26 +26,52 @@
             </select>
         </header>
 
+
+        <br>
+            <input type="radio" id="sorter" name="button1" value="Title">
+            <label for="sorter">Sort By Title</label>
+            <input type="radio" id="sorter2" name="button1" value="Horns">
+            <label for="sorter2">Sort By Horns</label><br><br>
+            
+            <button class="page1" value="page1">Page 1</button>
+             <p>&</p>
+            <button class="page2" value="page2">Page 2</button>
+
+            
         <main>
 
 
 
 
-            <section id="ANM" class="photo-template">
-                <h2></h2>
+            <template id="myTemplate" class="photo-template">
+                <figure><hr>
+
+                <h2>{{title}}</h2>
                 <img class="firstIMG"
-                    src="https://images-na.ssl-images-amazon.com/images/I/61KZKND7ysL._SX258_BO1,204,203,200_.jpg">
-                <p></p>
-                <span></span>
-                <div></div>
-            </section>
+                src="{{image_url}}">
+                <h3 class="p2">{{keyword}}</h3>
+                 <br>
+                
+                <p>{{description}}</p>
+                <br>
+                <b>Number of Horns : {{horns}}</b>
+
+
+            </figure>
+            <hr> 
+           <br>
+        </template>
+        <div class="ANM">
+            <section id="second-page"> </section>
+
+            </div>       
+            
 
 
         </main>
-    </fieldset>
-</div>
     
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+</div>
+    <script src="https://unpkg.com/mustache@latest"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/app.js"></script>
 </body>
