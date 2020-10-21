@@ -7,7 +7,7 @@
     background-color: darkgray;
     border: black double 2px;
     width: 80%;
-    margin-left: 11%;
+    margin-left: 8%;
     text-align: center;
     float: left;
     border-radius: 20px;
@@ -21,4 +21,20 @@
 
 .firstIMG {
     margin-top: 0%;
+}
+
+section {
+    background-color:darkgray;
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+
+button{
+    cursor: pointer;
+    width: 100px;
+    border-radius: 10px;
+    margin-bottom: 0.5%;
+   
 }
